@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Early Disease Prediction</title>
@@ -15,59 +13,67 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
         }
 
         body {
+            font-family: Arial, sans-serif;
             background: #f4f7fb;
             color: #222;
         }
 
+        /* HEADER */
+
         .header {
             background: #173b7a;
             color: white;
-            padding: 25px;
             text-align: center;
+            padding: 25px 15px;
         }
 
         .header h1 {
-            font-size: 32px;
+            font-size: 30px;
             margin-bottom: 8px;
         }
 
         .header p {
-            font-size: 15px;
-            opacity: 0.9;
+            font-size: 14px;
         }
 
+        /* CONTAINER */
+
         .container {
-            width: 90%;
-            max-width: 1100px;
+            width: 92%;
+            max-width: 1050px;
             margin: 30px auto;
         }
 
         .card {
             background: white;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
+
+        /* SECTION */
 
         .section-title {
             color: #173b7a;
+            font-size: 20px;
             margin: 25px 0 15px;
-            border-bottom: 2px solid #e5e5e5;
             padding-bottom: 8px;
+            border-bottom: 2px solid #eee;
         }
 
         .section-title:first-child {
             margin-top: 0;
         }
 
+        /* FORM */
+
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
         .form-group {
@@ -77,7 +83,7 @@
 
         label {
             font-weight: bold;
-            margin-bottom: 7px;
+            margin-bottom: 6px;
             color: #333;
         }
 
@@ -87,7 +93,6 @@
             border: 1px solid #ccc;
             border-radius: 7px;
             font-size: 15px;
-            background: white;
         }
 
         input:focus,
@@ -96,7 +101,9 @@
             border-color: #173b7a;
         }
 
-        .button-container {
+        /* BUTTON */
+
+        .button-box {
             text-align: center;
             margin-top: 30px;
         }
@@ -113,15 +120,17 @@
         }
 
         button:hover {
-            background: #0f2b5c;
+            background: #0e2b5c;
         }
+
+        /* RESULT */
 
         .result {
             margin-top: 30px;
             padding: 25px;
-            border-radius: 10px;
             background: #eaf7ee;
             border: 1px solid #b9e4c5;
+            border-radius: 12px;
             text-align: center;
         }
 
@@ -139,26 +148,148 @@
 
         .confidence {
             font-size: 16px;
-            margin-top: 10px;
         }
 
-        .error {
-            margin-top: 30px;
-            padding: 20px;
-            border-radius: 10px;
-            background: #ffeaea;
-            border: 1px solid #f0aaaa;
-            color: #a00000;
+        /* PROBABILITY */
+
+        .probability-section {
+            margin-top: 25px;
+            padding: 25px;
+            background: #fff;
+            border: 1px solid #dbe4f0;
+            border-radius: 12px;
         }
+
+        .probability-section h2 {
+            color: #173b7a;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .probability-row {
+            margin-bottom: 16px;
+        }
+
+        .probability-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .probability-name {
+            font-weight: bold;
+        }
+
+        .probability-value {
+            color: #173b7a;
+            font-weight: bold;
+        }
+
+        .bar-background {
+            height: 10px;
+            background: #e6ebf1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            width: {{ item.probability if item is defined else 0 }}%;
+            background: #8da6c5;
+            border-radius: 10px;
+        }
+
+        .predicted-bar {
+            background: #16803c;
+        }
+
+        /* SHAP */
+
+        .shap-section {
+            margin-top: 25px;
+            padding: 25px;
+            background: #f8fafc;
+            border: 1px solid #dbe4f0;
+            border-radius: 12px;
+        }
+
+        .shap-section h2 {
+            color: #173b7a;
+            margin-bottom: 8px;
+        }
+
+        .shap-card {
+            background: white;
+            padding: 16px;
+            margin-top: 12px;
+            border-radius: 9px;
+            border-left: 5px solid #173b7a;
+        }
+
+        .shap-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-name {
+            font-weight: bold;
+        }
+
+        .toward {
+            color: #16803c;
+            background: #e9f8ee;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .away {
+            color: #c62828;
+            background: #fdecec;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .shap-value {
+            margin-top: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* ERROR */
+
+        .error {
+            margin-top: 25px;
+            padding: 18px;
+            background: #ffeaea;
+            color: #a00000;
+            border: 1px solid #efaaaa;
+            border-radius: 8px;
+        }
+
+        /* DISCLAIMER */
 
         .info {
             margin-top: 25px;
-            padding: 15px;
+            padding: 16px;
             background: #f0f5ff;
             border-radius: 8px;
-            font-size: 14px;
             color: #444;
+            font-size: 14px;
+            line-height: 1.5;
         }
+
+        /* FOOTER */
 
         .footer {
             text-align: center;
@@ -167,23 +298,23 @@
             font-size: 13px;
         }
 
+        /* MOBILE */
+
         @media (max-width: 700px) {
 
             .form-grid {
                 grid-template-columns: 1fr;
             }
 
-            .container {
-                width: 95%;
-            }
-
             .card {
                 padding: 20px;
             }
 
-            .header h1 {
-                font-size: 25px;
+            .shap-top {
+                flex-direction: column;
+                align-items: flex-start;
             }
+
         }
 
     </style>
@@ -193,597 +324,435 @@
 
 <body>
 
-    <!-- Header -->
 
-    <div class="header">
+<!-- ================= HEADER ================= -->
 
-        <h1>🩺 Early Disease Prediction</h1>
+<div class="header">
 
-        <p>
-            Machine Learning Based Health Risk Prediction System
-        </p>
+    <h1>🩺 Early Disease Prediction</h1>
+
+    <p>
+        Machine Learning Based Health Risk Prediction System
+    </p>
+
+</div>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+<div class="card">
+
+
+<!-- ================= FORM ================= -->
+
+<form action="/predict" method="POST">
+
+
+<!-- BASIC INFORMATION -->
+
+<h2 class="section-title">
+    Basic Information
+</h2>
+
+<div class="form-grid">
+
+    <div class="form-group">
+        <label>Age</label>
+        <input type="number" name="Age" required>
+    </div>
+
+    <div class="form-group">
+        <label>Gender</label>
+
+        <select name="Gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>BMI</label>
+        <input type="number" name="BMI" step="0.1" required>
+    </div>
+
+    <div class="form-group">
+        <label>Heart Rate</label>
+        <input type="number" name="Heart_Rate" required>
+    </div>
+
+</div>
+
+
+<!-- MEDICAL MEASUREMENTS -->
+
+<h2 class="section-title">
+    Medical Measurements
+</h2>
+
+<div class="form-grid">
+
+    <div class="form-group">
+        <label>Systolic Blood Pressure</label>
+        <input type="number" name="Systolic_BP" required>
+    </div>
+
+    <div class="form-group">
+        <label>Diastolic Blood Pressure</label>
+        <input type="number" name="Diastolic_BP" required>
+    </div>
+
+    <div class="form-group">
+        <label>Glucose</label>
+        <input type="number" name="Glucose" step="0.1" required>
+    </div>
+
+    <div class="form-group">
+        <label>Cholesterol</label>
+        <input type="number" name="Cholesterol" step="0.1" required>
+    </div>
+
+</div>
+
+
+<!-- LIFESTYLE -->
+
+<h2 class="section-title">
+    Lifestyle & History
+</h2>
+
+<div class="form-grid">
+
+    <div class="form-group">
+        <label>Smoking</label>
+
+        <select name="Smoking" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Alcohol Use</label>
+
+        <select name="Alcohol_Use" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Family History</label>
+
+        <select name="Family_History" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+    </div>
+
+</div>
+
+
+<!-- SYMPTOMS -->
+
+<h2 class="section-title">
+    Symptoms
+</h2>
+
+<div class="form-grid">
+
+    <div class="form-group">
+        <label>Fever</label>
+
+        <select name="Fever" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Cough</label>
+
+        <select name="Cough" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Fatigue</label>
+
+        <select name="Fatigue" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Headache</label>
+
+        <select name="Headache" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Chest Pain</label>
+
+        <select name="Chest_Pain" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Breathing Difficulty</label>
+
+        <select name="Breathing_Difficulty" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Nausea</label>
+
+        <select name="Nausea" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Joint Pain</label>
+
+        <select name="Joint_Pain" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Frequent Urination</label>
+
+        <select name="Frequent_Urination" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+    </div>
+
+</div>
+
+
+<!-- BUTTON -->
+
+<div class="button-box">
+
+    <button type="submit">
+        🔍 Predict Disease
+    </button>
+
+</div>
+
+
+</form>
+
+
+<!-- ================= RESULT ================= -->
+
+{% if prediction %}
+
+<div class="result">
+
+    <h2>
+        Prediction Result
+    </h2>
+
+    <div class="prediction">
+        {{ prediction }}
+    </div>
+
+    {% if confidence %}
+
+    <div class="confidence">
+
+        Predicted Class Probability:
+
+        <strong>
+            {{ confidence }}%
+        </strong>
 
     </div>
 
+    {% endif %}
 
-    <!-- Main Container -->
+</div>
 
-    <div class="container">
+{% endif %}
 
-        <div class="card">
 
-            <form action="/predict" method="POST">
+<!-- ================= PROBABILITIES ================= -->
 
+{% if class_probabilities %}
 
-                <!-- ============================= -->
-                <!-- BASIC INFORMATION -->
-                <!-- ============================= -->
+<div class="probability-section">
 
-                <h2 class="section-title">
-                    Basic Information
-                </h2>
+    <h2>
+        📊 Prediction Probability
+    </h2>
 
-                <div class="form-grid">
+    <p class="description">
+        Probability distribution across all disease classes.
+        The highest probability represents the predicted class.
+    </p>
 
-                    <div class="form-group">
 
-                        <label for="Age">
-                            Age
-                        </label>
+    {% for item in class_probabilities %}
 
-                        <input
-                            type="number"
-                            id="Age"
-                            name="Age"
-                            min="1"
-                            max="120"
-                            required
-                        >
+    <div class="probability-row">
 
-                    </div>
+        <div class="probability-header">
 
+            <span class="probability-name">
+                {{ item.class }}
+            </span>
 
-                    <div class="form-group">
+            <span class="probability-value">
+                {{ item.probability }}%
+            </span>
 
-                        <label for="Gender">
-                            Gender
-                        </label>
+        </div>
 
-                        <select id="Gender" name="Gender" required>
 
-                            <option value="">
-                                Select Gender
-                            </option>
+        <div class="bar-background">
 
-                            <option value="Male">
-                                Male
-                            </option>
-
-                            <option value="Female">
-                                Female
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="BMI">
-                            BMI
-                        </label>
-
-                        <input
-                            type="number"
-                            id="BMI"
-                            name="BMI"
-                            step="0.1"
-                            min="5"
-                            max="80"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Heart_Rate">
-                            Heart Rate
-                        </label>
-
-                        <input
-                            type="number"
-                            id="Heart_Rate"
-                            name="Heart_Rate"
-                            min="30"
-                            max="220"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- ============================= -->
-                <!-- MEDICAL MEASUREMENTS -->
-                <!-- ============================= -->
-
-                <h2 class="section-title">
-                    Medical Measurements
-                </h2>
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-
-                        <label for="Systolic_BP">
-                            Systolic Blood Pressure
-                        </label>
-
-                        <input
-                            type="number"
-                            id="Systolic_BP"
-                            name="Systolic_BP"
-                            min="50"
-                            max="250"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Diastolic_BP">
-                            Diastolic Blood Pressure
-                        </label>
-
-                        <input
-                            type="number"
-                            id="Diastolic_BP"
-                            name="Diastolic_BP"
-                            min="30"
-                            max="150"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Glucose">
-                            Glucose
-                        </label>
-
-                        <input
-                            type="number"
-                            id="Glucose"
-                            name="Glucose"
-                            step="0.1"
-                            min="20"
-                            max="500"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Cholesterol">
-                            Cholesterol
-                        </label>
-
-                        <input
-                            type="number"
-                            id="Cholesterol"
-                            name="Cholesterol"
-                            step="0.1"
-                            min="50"
-                            max="500"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- ============================= -->
-                <!-- LIFESTYLE -->
-                <!-- ============================= -->
-
-                <h2 class="section-title">
-                    Lifestyle & History
-                </h2>
-
-                <div class="form-grid">
-
-                    <div class="form-group">
-
-                        <label for="Smoking">
-                            Smoking
-                        </label>
-
-                        <select id="Smoking" name="Smoking" required>
-
-                            <option value="">
-                                Select
-                            </option>
-
-                            <option value="Yes">
-                                Yes
-                            </option>
-
-                            <option value="No">
-                                No
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Alcohol_Use">
-                            Alcohol Use
-                        </label>
-
-                        <select id="Alcohol_Use" name="Alcohol_Use" required>
-
-                            <option value="">
-                                Select
-                            </option>
-
-                            <option value="Yes">
-                                Yes
-                            </option>
-
-                            <option value="No">
-                                No
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Family_History">
-                            Family History
-                        </label>
-
-                        <select id="Family_History" name="Family_History" required>
-
-                            <option value="">
-                                Select
-                            </option>
-
-                            <option value="Yes">
-                                Yes
-                            </option>
-
-                            <option value="No">
-                                No
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ============================= -->
-                <!-- SYMPTOMS -->
-                <!-- ============================= -->
-
-                <h2 class="section-title">
-                    Symptoms
-                </h2>
-
-                <div class="form-grid">
-
-
-                    <div class="form-group">
-
-                        <label for="Fever">
-                            Fever
-                        </label>
-
-                        <select id="Fever" name="Fever" required>
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Cough">
-                            Cough
-                        </label>
-
-                        <select id="Cough" name="Cough" required>
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Fatigue">
-                            Fatigue
-                        </label>
-
-                        <select id="Fatigue" name="Fatigue" required>
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Headache">
-                            Headache
-                        </label>
-
-                        <select id="Headache" name="Headache" required>
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Chest_Pain">
-                            Chest Pain
-                        </label>
-
-                        <select id="Chest_Pain" name="Chest_Pain" required>
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Breathing_Difficulty">
-                            Breathing Difficulty
-                        </label>
-
-                        <select
-                            id="Breathing_Difficulty"
-                            name="Breathing_Difficulty"
-                            required
-                        >
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Nausea">
-                            Nausea
-                        </label>
-
-                        <select id="Nausea" name="Nausea" required>
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Joint_Pain">
-                            Joint Pain
-                        </label>
-
-                        <select id="Joint_Pain" name="Joint_Pain" required>
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="Frequent_Urination">
-                            Frequent Urination
-                        </label>
-
-                        <select
-                            id="Frequent_Urination"
-                            name="Frequent_Urination"
-                            required
-                        >
-
-                            <option value="0">
-                                No
-                            </option>
-
-                            <option value="1">
-                                Yes
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-                <!-- ============================= -->
-                <!-- PREDICT BUTTON -->
-                <!-- ============================= -->
-
-                <div class="button-container">
-
-                    <button type="submit">
-                        🔍 Predict Disease
-                    </button>
-
-                </div>
-
-            </form>
-
-
-            <!-- ============================= -->
-            <!-- RESULT -->
-            <!-- ============================= -->
-
-            {% if prediction %}
-
-            <div class="result">
-
-                <h2>
-                    Prediction Result
-                </h2>
-
-                <div class="prediction">
-
-                    {{ prediction }}
-
-                </div>
-
-                {% if confidence %}
-
-                <div class="confidence">
-
-                    Model Confidence:
-                    <strong>{{ confidence }}%</strong>
-
-                </div>
-
-                {% endif %}
-
+            <div class="bar {% if item.class == prediction %}predicted-bar{% endif %}"
+                style="width: {{ item.probability }}%;">
             </div>
-
-            {% endif %}
-
-
-            <!-- ============================= -->
-            <!-- ERROR -->
-            <!-- ============================= -->
-
-            {% if error %}
-
-            <div class="error">
-
-                <strong>Error:</strong>
-
-                {{ error }}
-
-            </div>
-
-            {% endif %}
-
-
-            <!-- ============================= -->
-            <!-- DISCLAIMER -->
-            <!-- ============================= -->
-
-            <div class="info">
-
-                <strong>Note:</strong>
-
-                This system is an academic machine learning prototype
-                for early disease-risk prediction. It is not a medical
-                diagnosis and should not replace professional medical advice.
-
-            </div>
-
 
         </div>
 
     </div>
 
+    {% endfor %}
 
-    <div class="footer">
+</div>
 
-        Early Disease Prediction using Machine Learning
+{% endif %}
+
+
+<!-- ================= SHAP ================= -->
+
+{% if shap_features %}
+
+<div class="shap-section">
+
+    <h2>
+        🔍 Why This Prediction?
+    </h2>
+
+    <p class="description">
+        These features had the strongest influence on the
+        model's prediction. SHAP explains model behavior
+        and does not establish medical causation.
+    </p>
+
+
+    {% for item in shap_features %}
+
+    <div class="shap-card">
+
+        <div class="shap-top">
+
+            <span class="feature-name">
+                {{ item.feature }}
+            </span>
+
+
+            {% if item.direction == "toward" %}
+
+            <span class="toward">
+                ↑ Toward Prediction
+            </span>
+
+            {% else %}
+
+            <span class="away">
+                ↓ Away from Prediction
+            </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="shap-value">
+
+            SHAP Value:
+
+            <strong>
+                {{ item.value }}
+            </strong>
+
+        </div>
 
     </div>
 
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+<!-- ================= ERROR ================= -->
+
+{% if error %}
+
+<div class="error">
+
+    <strong>Error:</strong>
+
+    {{ error }}
+
+</div>
+
+{% endif %}
+
+
+<!-- ================= DISCLAIMER ================= -->
+
+<div class="info">
+
+    <strong>Note:</strong>
+
+    This system is an academic machine learning prototype
+    for early disease-risk prediction. It is not a medical
+    diagnosis and should not replace professional medical advice.
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<div class="footer">
+
+    Early Disease Prediction using Machine Learning
+
+</div>
+
+
 </body>
-
-
 
 </html>
