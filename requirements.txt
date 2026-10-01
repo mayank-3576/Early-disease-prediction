@@ -6,3 +6,4 @@ matplotlib
 seaborn
 shap
 joblib
+gunicorn
